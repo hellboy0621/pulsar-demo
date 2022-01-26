@@ -1,6 +1,7 @@
-package com.xtransformers.util;
+package com.xtransformers.service;
 
 import com.google.common.collect.Sets;
+import com.xtransformers.util.PulsarAdminFactory;
 import org.apache.pulsar.client.admin.PulsarAdmin;
 import org.apache.pulsar.client.admin.PulsarAdminException;
 import org.apache.pulsar.common.policies.data.TenantInfo;
