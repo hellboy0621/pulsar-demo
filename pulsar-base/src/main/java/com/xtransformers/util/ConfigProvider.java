@@ -27,6 +27,7 @@ public class ConfigProvider {
         }
     }
 
-    public static final String SERVER_HTTP_URL = PROPERTIES.getProperty("pulsar.admin.service-http-url", "http://node1:8080,node2:8080,node3:8080");
+    public static final String ADMIN_SERVICE_HTTP_URL = PROPERTIES.getProperty("pulsar.admin.service-http-url", "http://node1:8080,node2:8080,node3:8080");
+    public static final String CLIENT_SERVICE_URL = PROPERTIES.getProperty("pulsar.client.service-url", "pulsar://node1:6650,node2:6650,node3:6650");
 
 }

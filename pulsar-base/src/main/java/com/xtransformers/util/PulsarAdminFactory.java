@@ -13,7 +13,7 @@ public final class PulsarAdminFactory {
 
     static {
         try {
-            pulsarAdmin = PulsarAdmin.builder().serviceHttpUrl(ConfigProvider.SERVER_HTTP_URL).build();
+            pulsarAdmin = PulsarAdmin.builder().serviceHttpUrl(ConfigProvider.ADMIN_SERVICE_HTTP_URL).build();
         } catch (PulsarClientException e) {
             LOGGER.error("build PulsarAdmin error ", e);
         }
