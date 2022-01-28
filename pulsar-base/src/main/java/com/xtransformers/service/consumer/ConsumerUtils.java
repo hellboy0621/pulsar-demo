@@ -1,10 +1,12 @@
 package com.xtransformers.service.consumer;
 
+import com.xtransformers.domain.Equipment;
 import com.xtransformers.util.Constant;
 import com.xtransformers.util.PulsarClientFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.pulsar.client.api.*;
+import org.apache.pulsar.client.impl.schema.AvroSchema;
 
 public class ConsumerUtils {
 
@@ -30,7 +32,26 @@ public class ConsumerUtils {
                 LOGGER.info("receive message : {}", msg);
                 consumer.acknowledge(message);
             } catch (Throwable t) {
-                LOGGER.warn("Failed to process message");
+                LOGGER.warn("Failed to process message", t);
+                consumer.negativeAcknowledge(message);
+            }
+        }
+    }
+
+    public static void consumeSchema() throws PulsarClientException {
+        PulsarClient pulsarClient = PulsarClientFactory.getInstance();
+        Consumer<Equipment> consumer = pulsarClient.newConsumer(AvroSchema.of(Equipment.class))
+                .topic(Constant.TOPIC + "1")
+                .subscriptionName("sub_04")
+                .subscribe();
+        while (true) {
+            Message<Equipment> message = consumer.receive();
+            try {
+                Equipment msg = message.getValue();
+                LOGGER.info("received msg : {}", msg);
+                consumer.acknowledge(message);
+            } catch (Exception e) {
+                LOGGER.error("Failed to process message", e);
                 consumer.negativeAcknowledge(message);
             }
         }

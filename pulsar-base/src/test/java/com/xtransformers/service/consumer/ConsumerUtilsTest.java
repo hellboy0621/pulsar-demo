@@ -14,4 +14,10 @@ public class ConsumerUtilsTest {
         PulsarClientFactory.close();
     }
 
+    @Test
+    public void testConsumeSchema() throws PulsarClientException {
+        ConsumerUtils.consumeSchema();
+        PulsarClientFactory.close();
+    }
+
 }
