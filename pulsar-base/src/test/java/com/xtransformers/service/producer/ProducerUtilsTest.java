@@ -50,4 +50,10 @@ public class ProducerUtilsTest {
         PulsarClientFactory.close();
     }
 
+    @Test
+    public void testSendMessageBatch() throws PulsarClientException {
+        ProducerUtils.sendMessageBatch("Hello pulsar api world batch.");
+        PulsarClientFactory.close();
+    }
+
 }

@@ -84,5 +84,14 @@ public class ProducerUtils {
         producer.close();
     }
 
-
+    public static void sendMessageBatch(String message) throws PulsarClientException {
+        PulsarClient pulsarClient = PulsarClientFactory.getInstance();
+        Producer<String> producer = pulsarClient.newProducer(Schema.STRING)
+                .topic(Constant.TOPIC)
+                .create();
+        for (int i = 0; i < 200; i++) {
+            producer.send(message + i);
+        }
+        producer.close();
+    }
 }

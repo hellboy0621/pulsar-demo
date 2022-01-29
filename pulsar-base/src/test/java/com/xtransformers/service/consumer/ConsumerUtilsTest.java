@@ -20,4 +20,10 @@ public class ConsumerUtilsTest {
         PulsarClientFactory.close();
     }
 
+    @Test
+    public void testConsumeBatch() throws PulsarClientException {
+        ConsumerUtils.consumeBatch();
+        PulsarClientFactory.close();
+    }
+
 }
